@@ -1,5 +1,5 @@
 const Chat = require('../models/chat');
-const openai = require('axios');
+const axios = require("axios");
 
 
 class ChatController {
@@ -38,18 +38,18 @@ async createChat(req, res) {
 
 async sendChat(req, res) {
     try {
-        const { chatId }= req.params.id;
-        const { Model, message } = req.body;
+        const chatId = req.params.id;
+        const { model, message } = req.body;
         const chat = await Chat.findById(chatId);
         if (!chat) {
             return res.status(404).json({ message: 'Chat not found' });
         }
-        chat.messages.push({ role: 'user', text: message });
+        chat.messages.push({ role: 'user', content: message });
         
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
             {
-              model: Model,
+              model: model,
               messages: chat.messages,
             },
             {
@@ -61,7 +61,7 @@ async sendChat(req, res) {
           );
 
 
-        chat.messages.push({ role: 'assistant', text: response.data.choices[0].message.content });
+        chat.messages.push({ role: 'assistant', content: response.data.choices[0].message.content });
         await chat.save();
 
         res.status(200).json({ response: response.data.choices[0].message.content });

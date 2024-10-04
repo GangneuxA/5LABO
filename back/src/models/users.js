@@ -46,6 +46,4 @@ userSchema.methods.checkPassword = async function (password) {
 };
 const users = mongoose.model("users", userSchema);
 
-module.exports = {
-  users,
-};
+module.exports = users

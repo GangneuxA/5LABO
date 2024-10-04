@@ -1,50 +1,34 @@
-# Project Name
+# Documentation de l'API Node.js avec Express
 
-This is a Node.js project with an Express API using an MVC architecture and the Mongoose API.
+## Installation
 
-## Project Structure
+Pour installer et configurer cette API, suivez les étapes ci-dessous :
 
-```
-back
-├── src
-│   ├── app.js
-│   ├── controllers
-│   │   └── index.js
-│   ├── models
-│   │   └── index.js
-│   ├── routes
-│   │   └── index.js
-│   └── views
-│       └── index.js
-├── package.json
-├── .env
-└── README.md
-```
 
-## Getting Started
+1. **Cloner le dépôt** :
+    ```bash
+    git clone https://github.com/GangneuxA/5LABO
+    cd 5LABO/back
+    ```
 
-To get started with the project, follow these steps:
+2. **Installer les dépendances** :
+    ```bash
+    npm install
+    ```
 
-1. Clone the repository.
-2. Install the dependencies by running `npm install`.
-3. Set up the environment variables in the `.env` file.
-4. Start the server by running `npm start`.
+3. **Configurer les variables d'environnement** :
+    Créez un fichier `.env` à la racine du projet et ajoutez les variables nécessaires.
+    Exemple de fichier `.env` :
+    ```
+    MONGODB_URI=<VOTRE-URI-BDD>
+    JWT_Token=<VOTRE-TOKEN>
+    ```
 
-## Usage
+4. **Démarrer le serveur** :
+    ```bash
+    npm start
+    ```
 
-- The API routes are defined in the `src/routes/index.js` file.
-- The controllers for handling the routes are defined in the `src/controllers/index.js` file.
-- The models for interacting with the database are defined in the `src/models/index.js` file.
-- The views for rendering HTML templates are defined in the `src/views/index.js` file.
+## Accès à la documentation Swagger
 
-## Dependencies
-
-- Express
-- Mongoose
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-```
-
-Please note that this is a template and you should replace the placeholders with the actual project name, description, and other relevant information.
+Une fois le serveur démarré, vous pouvez accéder à la documentation Swagger de l'API en naviguant vers l'URL suivante dans votre navigateur : http://<VOTRE-IP>:3010/api-docs

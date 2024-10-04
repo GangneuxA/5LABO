@@ -1,4 +1,5 @@
 const users = require('../models/users');
+const Chat = require('../models/chat');
 const jwt = require('jsonwebtoken');
 
 class UserController {
@@ -12,7 +13,7 @@ class UserController {
         message: `No user found with id: ${id}`,
       });
     }
-    res.status(200).send(newItem);
+    res.status(200).send(user);
   } catch (error) {
     res.status(500).send({
       status: "Error",
@@ -41,12 +42,47 @@ class UserController {
 
   async update(req, res) {
     const id = req.auth.user._id;
-    if (!ObjectID.isValid(id)) {
-      return res.status(400).send({
+    try {
+      const { pseudo ,password , apikey } = req.body;
+      let user = await users.findById(id);
+      if (!user) {
+        return res.status(404).send({
+          status: "Error",
+          message: `No user found with id: ${id}`,
+        });
+      }
+
+      if (pseudo !== undefined && pseudo !== '') {
+        user.pseudo = pseudo;
+      }
+      if (password !== undefined && password !== '') {
+        user.password = password;
+      }
+      if (apikey !== undefined && apikey !== '') {
+        user.apikey = apikey;
+      }
+
+      await user.save();
+
+      const updatedUser = await users.findById(id);
+      if (!updatedUser) {
+        return res.status(404).send({
+          status: "Error",
+          message: `No user found with id: ${id}`,
+        });
+      }
+      res.status(200).send(updatedUser);
+    } catch (error) {
+      res.status(500).send({
         status: "Error",
-        message: `Invalid ID: ${id}`,
+        message: `An error occurred while updating user with id: ${id}`,
+        error: error.message,
       });
     }
+  };
+
+  async delete(req, res)  {
+    const id = req.auth.user._id;
     try {
       const deletedUser = await users.findByIdAndDelete(id);
       if (!deletedUser) {
@@ -55,31 +91,9 @@ class UserController {
           message: `No user found with id: ${id}`,
         });
       }
-      res.status(200).send(deletedUser);
-    } catch (error) {
-      res.status(500).send({
-        status: "Error",
-        message: `An error occurred while deleting user with id: ${id}`,
-        error: error.message,
-      });
-    }
-  };
-
-  async delete(req, res)  {
-    const id = req.auth.user._id;
-    if (!ObjectID.isValid(id)) {
-      return res.status(400).send({
-        status: "Error",
-        message: `Invalid ID: ${id}`,
-      });
-    }
-    try {
-      const deletedUser = await users.findByIdAndDelete(id);
-      if (!deletedUser) {
-        return res.status(404).send({
-          status: "Error",
-          message: `No user found with id: ${id}`,
-        });
+      const chats = await Chat.find({ user: req.auth.user._id });
+      for (const chat of chats) {
+        await Chat.findByIdAndDelete(chat._id);
       }
       res.status(200).send(deletedUser);
     } catch (error) {

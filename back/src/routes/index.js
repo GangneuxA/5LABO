@@ -337,16 +337,6 @@ router.get('/chat/:id', auth, chatController.getChatById);
  *       - Chat
  *     security:
  *       - bearerAuth: []
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               user:
- *                 type: string
- *                 description: The user ID
  *     responses:
  *       '201':
  *         description: Chat created successfully
