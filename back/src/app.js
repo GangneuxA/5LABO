@@ -6,6 +6,9 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 dotenv.config();
 
+// Set strictQuery option to true
+mongoose.set('strictQuery', true);
+
 const options = {
   definition: {
     openapi: '3.0.0',
