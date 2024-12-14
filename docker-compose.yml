@@ -9,16 +9,16 @@ services:
     volumes:
       - mongo-data:/data/db
 
-  backend:
-    build: ./back
-    container_name: backend
-    ports:
-      - "3010:3010"
-    depends_on:
-      - mongodb
-    environment:
-      - MONGODB_URI=mongodb://mongodb:27017/gpt
-      - JWT_Token="testscret"
+  # backend:
+  #   build: ./back
+  #   container_name: backend
+  #   ports:
+  #     - "3010:3010"
+  #   depends_on:
+  #     - mongodb
+  #   environment:
+  #     - MONGODB_URI=mongodb://mongodb:27017/gpt
+  #     - JWT_Token="testscret"
 
  # frontend:
  #   build: ./front

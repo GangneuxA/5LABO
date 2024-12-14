@@ -109,7 +109,7 @@ class UserController {
   try {
     await users.findOne({ pseudo: req.body.pseudo }).then((user) => {
       if (!user) {
-        return res.status(401).json({ error: "Utilisateur non trouvé !" });
+        return res.status(404).json({ error: "Utilisateur non trouvé !" });
       }
       user.checkPassword(req.body.password).then((valid) => {
         if (!valid) {
