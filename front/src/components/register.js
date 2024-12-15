@@ -39,7 +39,7 @@ function Register() {
       <h1>Register</h1>
       <form onSubmit={handleRegister}>
         <div>
-          <label>Username:</label>
+          <label>Username</label>
           <input
             type="text"
             value={username}
@@ -47,7 +47,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label>Password</label>
           <input
             type="password"
             value={password}
@@ -55,7 +55,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>apikey:</label>
+          <label>apikey</label>
           <input
             type="text"
             value={apikey}

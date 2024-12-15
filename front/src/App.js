@@ -3,7 +3,8 @@ import { Route, Switch, Link, useHistory } from 'react-router-dom';
 import Users from './components/Users';
 import Chat from './components/Chat';
 import Login from './components/Login';
-import Register from './components/register';
+import Register from './components/register'; // Correct the import statement
+import Home from './components/Home';
 import './App.css';
 
 function App() {
@@ -26,23 +27,34 @@ function App() {
     setToken(newToken);
   };
 
+  const handleAccountDeletion = () => {
+    setToken(null);
+  };
+
   return (
     <div className="App">
-      <nav>
+      <nav style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
         {token ? (
           <>
-            <button onClick={handleLogout} className="nav-button">Logout</button>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/chat" className="nav-link">Chat</Link>
             <Link to="/users" className="nav-link">Users</Link>
+            <button onClick={handleLogout} className="nav-link nav-button">Logout</button>
           </>
         ) : (
           <>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/chat" className="nav-link">Chat</Link>
             <Link to="/register" className="nav-link">Register</Link>
             <Link to="/login" className="nav-link">Login</Link>
           </>
         )}
       </nav>
       <Switch>
-        <Route path="/users" component={Users} />
+        <Route exact path="/" component={Home} /> {/* Use the new Home component */}
+        <Route path="/users">
+          <Users onAccountDeletion={handleAccountDeletion} />
+        </Route>
         <Route path="/chat" component={Chat} />
         <Route path="/login">
           <Login onLogin={handleLogin} />

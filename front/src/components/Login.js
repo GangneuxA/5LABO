@@ -43,7 +43,7 @@ function Login({ onLogin }) {
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
-          <label>Username:</label>
+          <label>Username</label>
           <input
             type="text"
             value={username}
@@ -51,7 +51,7 @@ function Login({ onLogin }) {
           />
         </div>
         <div>
-          <label>Password:</label>
+          <label>Password</label>
           <input
             type="password"
             value={password}

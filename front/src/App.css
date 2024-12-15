@@ -4,6 +4,7 @@
 
 nav {
   margin-bottom: 20px;
+  text-align: center; /* Center the buttons */
 }
 
 .nav-button, .nav-link {
@@ -15,8 +16,10 @@ nav {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  display: inline-block;
+  display: inline-block; /* Ensure buttons are inline */
   text-align: center;
+  line-height: 1.5; /* Ensure consistent height */
+  vertical-align: middle; /* Align vertically */
 }
 
 .nav-button:hover, .nav-link:hover {
@@ -56,4 +59,76 @@ nav {
   to {
     transform: rotate(360deg);
   }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+form div {
+  margin-bottom: 15px;
+}
+
+form label {
+  margin-right: 10px;
+}
+
+form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+}
+
+form button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+form p {
+  color: red;
+  margin-top: 10px;
+}
+
+form .delete-button {
+  background-color: #dc3545; /* Red color */
+}
+
+form .delete-button:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+.delete-button {
+  background-color: #dc3545; /* Red color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.delete-button:hover {
+  background-color: #c82333; /* Darker red on hover */
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
-function Users() {
-  const [user, setUser] = useState(null);
+function Users({ onAccountDeletion }) {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [password, setPassword] = useState('');
   const [pseudo, setPseudo] = useState('');
   const [apiKey, setApiKey] = useState('');
@@ -11,16 +11,16 @@ function Users() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const userData = JSON.parse(localStorage.getItem('user'));
+
     if (token) {
-      // Fetch user data from local storage or API
-      const userData = JSON.parse(localStorage.getItem('user'));
-      setUser(userData);
       setPseudo(userData.pseudo);
       setApiKey(userData.apikey);
     } else {
+      console.log('Redirecting to login');
       history.push('/login');
     }
-  }, [history]);
+  }, [history, setUser, setPseudo, setApiKey,user]);
 
   const handleUpdate = async () => {
     try {
@@ -49,7 +49,29 @@ function Users() {
     }
   };
 
-  if (!user) {
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(process.env.REACT_APP_API_URL + '/users', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      setUser(null);
+      onAccountDeletion();
+      history.push('/login');
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      setMessage('Error deleting user');
+    }
+  };
+
+  if (!user || !user._id) {
     history.push('/login');
     return null;
   }
@@ -62,20 +84,26 @@ function Users() {
       <p>API Key: {user.apikey}</p>
       <div>
         <h2>Update User Details</h2>
-        <label>
-          Pseudo:
-          <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
-        </label>
-        <label>
-          API Key:
-          <input type="text" value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button onClick={handleUpdate}>Update</button>
-        {message && <p>{message}</p>}
+        <form>
+          <div>
+            <label>Pseudo</label>
+            <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
+          </div>
+          <div>
+            <label>API Key</label>
+            <input type="text" value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
+          </div>
+          <div>
+            <label>Password</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <button type="button" onClick={handleUpdate}>Update</button>
+          {message && <p>{message}</p>}
+        </form>
+      </div>
+      <div>
+        <h2>Delete Account</h2>
+        <button type="button" className="delete-button" onClick={handleDelete}>Delete Account</button>
       </div>
     </div>
   );
