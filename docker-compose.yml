@@ -28,7 +28,7 @@ services:
     depends_on:
       - backend
     environment:
-      - REACT_APP_API_URL=http://backend:3010
+      - REACT_APP_API_URL=http://localhost:3010/api
       
   nginx:
     image: nginx:latest
@@ -36,10 +36,11 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    volumes:
-      - ./frontend.conf:/etc/nginx/conf.d/frontend.conf
     depends_on:
+      - backend
       - frontend
+    volumes:
+      - ./frontend.conf:/etc/nginx/conf.d/default.conf
 
 volumes:
   mongo-data:

@@ -29,6 +29,18 @@ Pour installer et configurer cette API, suivez les étapes ci-dessous :
     npm start
     ```
 
+Toutes l'api est disponible sur http://<VOTRE-IP>:3010/api/
+
 ## Accès à la documentation Swagger
 
-Une fois le serveur démarré, vous pouvez accéder à la documentation Swagger de l'API en naviguant vers l'URL suivante dans votre navigateur : http://<VOTRE-IP>:3010/api-docs
+Une fois le serveur démarré, vous pouvez accéder à la documentation Swagger de l'API en naviguant vers l'URL suivante dans votre navigateur : http://<VOTRE-IP>:3010/api/api-docs
+
+
+## Acces aux test
+
+Excuter la commande suivant 
+
+```
+npm test
+
+```

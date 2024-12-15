@@ -9,6 +9,8 @@ function Chat() {
   const [message, setMessage] = useState('');
   const [model, setModel] = useState('gpt-4o');
   const [chatMessages, setChatMessages] = useState([]);
+  const [messageLoading, setMessageLoading] = useState(false);
+  const [messageError, setMessageError] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -80,6 +82,8 @@ function Chat() {
 
   const handleSendMessage = async () => {
     if (!selectedChat) return;
+    setMessageLoading(true);
+    setMessageError('');
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/chat/${selectedChat._id}`, {
         method: 'POST',
@@ -96,8 +100,10 @@ function Chat() {
       setChatMessages([...chatMessages, { role: 'user', content: message }, { role: 'response', content: data.response }]);
       setMessage('');
     } catch (error) {
+      setMessageError('Failed to send message');
       console.error('Error sending message:', error);
     }
+    setMessageLoading(false);
   };
 
   const handleDeleteChat = async (id) => {
@@ -181,7 +187,10 @@ function Chat() {
               <option value="gpt-3.5-turbo-1106">GPT-3.5 Turbo 1106</option>
               <option value="gpt-3.5-turbo-instruct">GPT-3.5 Turbo Instruct</option>
             </select>
-            <button onClick={handleSendMessage} className="send-button">Send</button>
+            {messageError && <p style={{ color: 'red' }}>{messageError}</p>}
+            <button onClick={handleSendMessage} className="send-button" disabled={messageLoading}>
+              {messageLoading ? 'Sending...' : 'Send'}
+            </button>
             <button onClick={() => handleDeleteChat(selectedChat._id)} className="delete-button">Delete</button>
           </div>
         </div>

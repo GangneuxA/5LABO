@@ -29,7 +29,7 @@ const options = {
     },
     servers: [
       {
-        url: 'http://localhost:3010', 
+        url: 'http://localhost:3010/api/', 
         description: 'Serveur local',
       },
     ],
@@ -40,7 +40,7 @@ const options = {
 const specs = swaggerJsdoc(options);
 var app = express();
 //swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+app.use('/api/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 
 const corsOptions ={
@@ -53,7 +53,7 @@ app.use(cors(corsOptions));
 app.use(setCorsHeaders);
 app.use(express.json());
 
-app.use('/', route);
+app.use('/api/', route);
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,

@@ -81,7 +81,7 @@ function Users({ onAccountDeletion }) {
       <h1>Users</h1>
       <p>ID: {user._id}</p>
       <p>Pseudo: {user.pseudo}</p>
-      <p>API Key: {user.apikey}</p>
+      <p>Apikey chatgpt: {user.apikey}</p>
       <div>
         <h2>Update User Details</h2>
         <form>
@@ -90,7 +90,7 @@ function Users({ onAccountDeletion }) {
             <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
           </div>
           <div>
-            <label>API Key</label>
+            <label>Apikey chatgpt</label>
             <input type="text" value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
           </div>
           <div>

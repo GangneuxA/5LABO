@@ -11,7 +11,7 @@ function Register() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      history.push('/'); // Redirect to home page if already logged in
+      history.push('/');
     }
   }, [history]);
 
@@ -27,7 +27,7 @@ function Register() {
     });
 
     if (response.ok) {
-      history.push('/login'); // Redirect to home page
+      history.push('/login');
     } else {
       // ...handle registration failure...
     }
@@ -55,7 +55,7 @@ function Register() {
           />
         </div>
         <div>
-          <label>apikey</label>
+          <label>apikey chatgpt</label>
           <input
             type="text"
             value={apikey}

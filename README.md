@@ -29,9 +29,8 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 3. **Accéder à l'application**
 
-    Une fois les services démarrés, vous pouvez accéder à votre application en ouvrant votre navigateur et en naviguant vers `http://localhost:5000` et a l'api avec `http://localhost:5000` .
-
-    Retrouver la documentation de l'api  `http://localhost:5000/api-docs`
+    Une fois les services démarrés, vous pouvez accéder à votre application en ouvrant votre navigateur et en naviguant vers `http://localhost` et a l'api avec `http://localhost` .
+    Retrouver l'api  `http://localhost/api/` et la documentation de l'api  `http://localhost/api/api-docs`
 
 ## Arrêter les services
 
@@ -40,6 +39,6 @@ Pour arrêter les services, utilisez la commande suivante :
 docker-compose down
 ```
 
-## Conclusion
+## Creation en IaC
 
-Vous avez maintenant démarré votre application en utilisant Docker Compose. Pour plus d'informations, consultez la [documentation officielle de Docker Compose](https://docs.docker.com/compose/).
+il est possible de créer en IaC l'application voir dans le readme dans le dossier terraform
