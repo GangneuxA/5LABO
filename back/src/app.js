@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const route = require('./routes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const cors = require('cors'); // Import cors
 dotenv.config();
 
 // Set strictQuery option to true
@@ -41,6 +42,15 @@ var app = express();
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
+
+const corsOptions ={
+   origin:'*', 
+   credentials:true,
+   optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions));
+app.use(setCorsHeaders);
 app.use(express.json());
 
 app.use('/', route);
@@ -60,3 +70,11 @@ const port = 3010;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+function setCorsHeaders(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+}
