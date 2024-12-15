@@ -132,3 +132,106 @@ form .delete-button:hover {
 .delete-button:hover {
   background-color: #c82333; /* Darker red on hover */
 }
+
+/* Transferred styles from Chat.css */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
+.chat-dropdown {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.create-button, .send-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.create-button {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 10px;
+}
+
+.create-button:hover, .delete-button:hover, .send-button:hover {
+  background-color: #0056b3;
+}
+
+.chat-box {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.chat-box.enlarged {
+  width: 80%;
+  max-width: 800px;
+}
+
+.messages-box {
+  border: #282c34 1px solid;
+  border-radius: 1%;
+  height: 600px;
+  margin-bottom: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.message-item {
+  margin-bottom: 10px;
+}
+
+.message-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-input input, .message-input select {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.message-input input {
+  flex: 1;
+}
+
+.send-button {
+  margin-bottom: 10px;
+}
+
+/* Styles for user and assistant messages */
+.user-message {
+  background-color: #e0f7fa;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.assistant-message {
+  background-color: #ffe0b2;
+  padding: 10px;
+  border-radius: 5px;
+}
