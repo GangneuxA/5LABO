@@ -29,8 +29,8 @@ Assurez-vous d'avoir les éléments suivants installés sur votre machine :
 
 3. **Accéder à l'application**
 
-    Une fois les services démarrés, vous pouvez accéder à votre application en ouvrant votre navigateur et en naviguant vers `http://localhost` et a l'api avec `http://localhost` .
-    Retrouver l'api  `http://localhost/api/` et la documentation de l'api  `http://localhost/api/api-docs`
+    Une fois les services démarrés, vous pouvez accéder à votre application en ouvrant votre navigateur et en naviguant vers `http://localhost`.
+    Retrouver l'api `http://localhost/api/` et la documentation de l'api  `http://localhost/api/api-docs`
 
 ## Arrêter les services
 
