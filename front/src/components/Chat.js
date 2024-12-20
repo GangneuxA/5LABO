@@ -75,6 +75,9 @@ function Chat() {
       }
       const newChat = await response.json();
       setChats([...chats, newChat]);
+      // Sélectionner automatiquement le nouveau chat
+      setSelectedChat(newChat);
+      setChatMessages([]);
     } catch (error) {
       console.error('Error creating chat:', error);
     }

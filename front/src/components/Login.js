@@ -11,7 +11,7 @@ function Login({ onLogin }) {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      history.push('/'); // Redirect to home page if already logged in
+      history.push('/chat'); // Redirect to home page if already logged in
     }
   }, [history]);
 
@@ -31,7 +31,7 @@ function Login({ onLogin }) {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
       onLogin(data.token);
-      history.push('/'); // Redirect to home page
+      history.push('/chat'); // Redirect to home page
     } else {
       setError('Invalid username or password');
     }
